@@ -4,12 +4,14 @@ import Header from "./Header";
 
 const AppLayout = () => {
   return (
-    <div>
-      <Header />
+    <div className="flex h-screen">
       <SideBar />
-      <main>
-        <Outlet />
-      </main>
+      <div className="flex-1 flex-col">
+        <Header />
+        <main className="bg-gray-100 pt-16 px-20 pb-24 flex-1">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };
