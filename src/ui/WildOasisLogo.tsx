@@ -2,7 +2,7 @@ interface Props {
   className: string;
 }
 
-export function WildOasisLogo(props: Props) {
+function WildOasisLogo(props: Props) {
   return (
     <svg
       viewBox="0 0 47 33"
