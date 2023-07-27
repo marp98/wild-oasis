@@ -1,15 +1,10 @@
-import { getCabins } from "@/services/apiCabins";
-import { useEffect } from "react";
+import CabinsTable from "@/features/cabins/CabinsTable";
 
 const Cabins = () => {
-  useEffect(() => {
-    getCabins().then((data) => console.log(data));
-  }, []);
-
   return (
     <div>
       Cabins
-      <img src="https://vuaaywhtormaxenfkvga.supabase.co/storage/v1/object/public/cabin-images/cabin-001.jpg" />
+      <CabinsTable />
     </div>
   );
 };
