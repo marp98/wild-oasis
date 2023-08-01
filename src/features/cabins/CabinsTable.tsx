@@ -1,7 +1,7 @@
 import { getCabins } from "@/services/apiCabins";
 import TableSkeleton from "@/ui/TableSkeleton";
 import { useQuery } from "@tanstack/react-query";
-import { formatCurrency } from "@/utils/helpers";
+import CabinRow from "./CabinRow";
 
 const CabinsTable = () => {
   const {
@@ -9,7 +9,7 @@ const CabinsTable = () => {
     data: cabins,
     error,
   } = useQuery({
-    queryKey: ["cabin"],
+    queryKey: ["cabins"],
     queryFn: getCabins,
   });
 
@@ -32,36 +32,8 @@ const CabinsTable = () => {
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y bg-gray-50">
-            {cabins?.map((cabin, idx) => (
-              <tr key={idx}>
-                <td className="py-3 px-6 whitespace-nowrap">
-                  <img
-                    src={cabin.image}
-                    className="block w-16 aspect-[3/2] object-cover object-center transform scale-150 translate-x-[-0.5rem]"
-                  />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap font-semibold text-gray-800 font-mono">
-                  {cabin.name}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  Fits up to {cabin.max_capacity} guests.
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap font-mono text-gray-800">
-                  {formatCurrency(cabin.regular_price)}
-                </td>
-                {cabin.discount ? (
-                  <td className="px-6 py-4 whitespace-nowrap font-mono text-green-800">
-                    {formatCurrency(cabin.discount)}
-                  </td>
-                ) : (
-                  <span>&mdash;</span>
-                )}
-                <td className="text-right px-6 whitespace-nowrap">
-                  <button className="py-2 leading-none px-3 font-medium text-red-600 hover:text-red-500 duration-150 hover:bg-gray-50 rounded-lg">
-                    Delete
-                  </button>
-                </td>
-              </tr>
+            {cabins?.map((cabin) => (
+              <CabinRow cabin={cabin} key={cabin.id} />
             ))}
           </tbody>
         </table>
